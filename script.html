@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  var code = window.location.search.split('?')[1].split('&').map(kv =>{
+      const [k,v] = kv.split('=');
+      return {
+          key: k,
+          value: v
+      }   
+      
+  })
+     fetch('<YOUR WEBHOOK URL>', {
+     'method' : 'POST',
+       'headers':{
+         'content-type' : 'application/json',
+         
+       },
+     'body': JSON.stringify({
+       'code': code[0].value
+     })
+   }).then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+  
+   
+    </script>
